@@ -28,7 +28,11 @@ Router.onBeforeAction('dataNotFound', {
 
 var requireLogin = function() {
     if (!Meteor.user()) {
-        this.render('accessDenied');
+        if (Meteor.loggedIn()) {
+            this.render(this.loadingTemplate);
+        } else {
+            this.render('accessDenied');
+        }
     } else {
         this.next();
     }
