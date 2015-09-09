@@ -16,7 +16,11 @@ Router.route('/posts/:_id', {
     data: function() {
         return Posts.findOne(this.params._id);
     }
-})
+});
+
+Router.route('/submit', {
+    name: 'postSubmit'
+});
 
 Router.onBeforeAction('dataNotFound', {
     only: 'postPage'
